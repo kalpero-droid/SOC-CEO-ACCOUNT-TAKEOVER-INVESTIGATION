@@ -1,0 +1,8 @@
+// Confirms successful sign-ins to the high-value (CEO) account
+// ResultType 0 = success
+SigninLogs
+| where TimeGenerated > ago(24h)
+| where UserPrincipalName == "ceo-test@rainyoung89gmail.onmicrosoft.com"
+| where ResultType == "0"
+| project TimeGenerated, UserPrincipalName, IPAddress, Location, ResultType
+| order by TimeGenerated desc

@@ -1,7 +1,0 @@
-// Pulls account-management activity (password changes, MFA registration)
-// tied to the compromised account, to check for persistence mechanisms
-AuditLogs
-| where TimeGenerated > ago(24h)
-| where TargetResources has "ceo-test@rainyoung89gmail.onmicrosoft.com" or InitiatedBy has "ceo-test@rainyoung89gmail.onmicrosoft.com"
-| project TimeGenerated, OperationName, InitiatedBy, Result
-| order by TimeGenerated desc
